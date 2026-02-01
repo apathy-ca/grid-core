@@ -1,0 +1,30 @@
+[package]
+name = "grid-cache"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "High-performance thread-safe LRU+TTL cache using DashMap"
+repository = "https://github.com/apathy-ca/grid-core"
+keywords = ["cache", "lru", "ttl", "concurrent"]
+categories = ["caching", "concurrency"]
+
+[lib]
+name = "grid_cache"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+python = ["pyo3"]
+
+[dependencies]
+dashmap.workspace = true
+pyo3 = { workspace = true, optional = true }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "cache_benchmarks"
+harness = false

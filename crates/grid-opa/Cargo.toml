@@ -1,0 +1,43 @@
+[package]
+name = "grid-opa"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "High-performance embedded OPA policy evaluation engine using Regorus"
+repository = "https://github.com/apathy-ca/grid-core"
+keywords = ["opa", "policy", "rego", "authorization"]
+categories = ["authentication"]
+
+[lib]
+name = "grid_opa"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+python = ["pyo3", "pythonize"]
+
+[dependencies]
+# OPA engine
+regorus.workspace = true
+
+# Python bindings (optional)
+pyo3 = { workspace = true, optional = true }
+pythonize = { workspace = true, optional = true }
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Error handling
+thiserror.workspace = true
+anyhow.workspace = true
+
+[dev-dependencies]
+pyo3 = { version = "0.22", features = ["auto-initialize"] }
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "opa_benchmarks"
+harness = false

@@ -1,0 +1,64 @@
+[package]
+name = "grid-core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+authors = ["James Henry <jhenry@apathy.ca>"]
+description = "High-performance Rust components for AI governance (OPA policy engine + cache)"
+repository = "https://github.com/apathy-ca/grid-core"
+keywords = ["opa", "policy", "cache", "governance", "ai"]
+categories = ["caching", "authentication"]
+
+[lib]
+name = "grid_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py39"], optional = true }
+grid-opa = { path = "crates/grid-opa" }
+grid-cache = { path = "crates/grid-cache" }
+
+[features]
+default = ["python"]
+python = ["pyo3", "grid-opa/python", "grid-cache/python"]
+
+[workspace]
+members = ["crates/grid-opa", "crates/grid-cache"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+authors = ["James Henry <jhenry@apathy.ca>"]
+
+[workspace.dependencies]
+# Python bindings
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py39"] }
+pythonize = "0.22"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# OPA engine
+regorus = "0.2"
+
+# Cache
+dashmap = "6.1"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.release-small]
+inherits = "release"
+opt-level = "z"
