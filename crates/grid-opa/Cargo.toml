@@ -38,6 +38,7 @@ anyhow.workspace = true
 pyo3 = { version = "0.22", features = ["auto-initialize"] }
 criterion = { version = "0.5", features = ["html_reports"] }
 
-[[bench]]
-name = "opa_benchmarks"
-harness = false
+# Benchmarks disabled - uncomment when benchmark files are created
+# [[bench]]
+# name = "opa_benchmarks"
+# harness = false
