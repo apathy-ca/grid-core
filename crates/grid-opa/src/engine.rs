@@ -66,9 +66,11 @@ impl OPAEngine {
     ///     }
     /// "#;
     ///
-    /// engine.load_policy("example".to_string(), policy.to_string()).unwrap();
+    /// engine.load_policy("example", policy).unwrap();
     /// ```
-    pub fn load_policy(&mut self, name: String, rego: String) -> Result<()> {
+    pub fn load_policy(&mut self, name: impl Into<String>, rego: impl Into<String>) -> Result<()> {
+        let name = name.into();
+        let rego = rego.into();
         if name.is_empty() {
             return Err(OPAError::InvalidInput(
                 "Policy name cannot be empty".to_string(),
@@ -143,7 +145,7 @@ impl OPAEngine {
     ///     }
     /// "#;
     ///
-    /// engine.load_policy("example".to_string(), policy.to_string()).unwrap();
+    /// engine.load_policy("example", policy).unwrap();
     ///
     /// let mut input_map = BTreeMap::new();
     /// input_map.insert(Value::String("user".into()), Value::String("admin".into()));
