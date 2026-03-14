@@ -17,7 +17,7 @@
 //!
 //! // Policy evaluation
 //! let mut engine = OPAEngine::new().unwrap();
-//! engine.load_policy("authz", "package authz\nallow = true".to_string()).unwrap();
+//! engine.load_policy("authz", "package authz\nallow = true").unwrap();
 //!
 //! // Caching
 //! let cache = LRUTTLCache::new(10_000, 3600);

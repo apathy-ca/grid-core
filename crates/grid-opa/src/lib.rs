@@ -28,7 +28,7 @@
 //!     }
 //! "#;
 //!
-//! engine.load_policy("authz".to_string(), policy.to_string()).unwrap();
+//! engine.load_policy("authz", policy).unwrap();
 //!
 //! let mut input_map = BTreeMap::new();
 //! input_map.insert(Value::String("user".into()), Value::String("admin".into()));

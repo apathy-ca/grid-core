@@ -10,10 +10,10 @@ use pyo3::prelude::*;
 use pyo3::types::PyDict;
 use regorus::Value;
 
-/// Python exception for OPA compilation errors
+// Python exception for OPA compilation errors
 pyo3::create_exception!(grid_opa, OPACompilationError, PyException);
 
-/// Python exception for OPA evaluation errors
+// Python exception for OPA evaluation errors
 pyo3::create_exception!(grid_opa, OPAEvaluationError, PyException);
 
 /// Convert OPAError to Python exception
