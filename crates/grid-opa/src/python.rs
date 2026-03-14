@@ -202,13 +202,7 @@ impl RustOPAEngine {
 #[pymodule]
 pub fn grid_opa(py: Python, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<RustOPAEngine>()?;
-    m.add(
-        "OPACompilationError",
-        py.get_type_bound::<OPACompilationError>(),
-    )?;
-    m.add(
-        "OPAEvaluationError",
-        py.get_type_bound::<OPAEvaluationError>(),
-    )?;
+    m.add("OPACompilationError", py.get_type::<OPACompilationError>())?;
+    m.add("OPAEvaluationError", py.get_type::<OPAEvaluationError>())?;
     Ok(())
 }
