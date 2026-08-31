@@ -15,7 +15,8 @@ name = "grid_core"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-pyo3 = { version = "0.24", features = ["extension-module", "abi3-py39"], optional = true }
+# pyo3 0.29.0+ fixes GHSA-36hh-v3qg-5jq4 (OOB read in PyList/PyTuple iterator nth/nth_back)
+pyo3 = { version = "0.29", features = ["extension-module", "abi3-py39"], optional = true }
 grid-opa = { path = "crates/grid-opa" }
 grid-cache = { path = "crates/grid-cache" }
 
@@ -36,8 +37,9 @@ authors = ["James Henry <jhenry@apathy.ca>"]
 
 [workspace.dependencies]
 # Python bindings
-pyo3 = { version = "0.24", features = ["extension-module", "abi3-py39"] }
-pythonize = "0.24"
+# pyo3 0.29.0+ fixes GHSA-36hh-v3qg-5jq4 (OOB read in PyList/PyTuple iterator nth/nth_back)
+pyo3 = { version = "0.29", features = ["extension-module", "abi3-py39"] }
+pythonize = "0.29"
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }

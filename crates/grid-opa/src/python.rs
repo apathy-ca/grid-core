@@ -121,7 +121,7 @@ impl RustOPAEngine {
         py: Python,
         query: String,
         input_data: &Bound<'_, PyDict>,
-    ) -> PyResult<PyObject> {
+    ) -> PyResult<Py<PyAny>> {
         // Convert Python dict to serde_json::Value first
         let input_json: serde_json::Value = pythonize::depythonize(input_data.as_any())?;
 
